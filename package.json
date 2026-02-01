@@ -1,0 +1,89 @@
+{
+  "name": "everlast-voice-pptx",
+  "version": "1.0.0",
+  "description": "AI-powered Voice-to-PowerPoint Desktop Application",
+  "main": "dist/electron/main.js",
+  "scripts": {
+    "dev": "npm run build && unset ELECTRON_RUN_AS_NODE && electron .",
+    "build:renderer": "next build && node scripts/fix-paths.js",
+    "build:electron": "tsc -p tsconfig.electron.json",
+    "build": "npm run build:renderer && npm run build:electron",
+    "start": "unset ELECTRON_RUN_AS_NODE && electron .",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.electron.json --noEmit",
+    "package": "npm run build && electron-builder"
+  },
+  "keywords": [
+    "electron",
+    "nextjs",
+    "ai",
+    "voice",
+    "powerpoint",
+    "presentation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.13.4",
+    "electron-store": "^8.2.0",
+    "form-data": "^4.0.5",
+    "next": "^14.2.35",
+    "node-record-lpcm16": "^1.0.1",
+    "pptxgenjs": "^3.12.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^3.25.76",
+    "zustand": "^4.5.7"
+  },
+  "devDependencies": {
+    "@types/node": "^25.1.0",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.4.23",
+    "concurrently": "^9.2.1",
+    "electron": "^30.0.0",
+    "electron-builder": "^26.4.0",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.6",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.9.3",
+    "wait-on": "^9.0.3"
+  },
+  "build": {
+    "appId": "com.everlast.voice-pptx",
+    "productName": "Everlast Voice Intelligence",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "signAndEditExecutable": false,
+      "verifyUpdateCodeSignature": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Office"
+    },
+    "mac": {
+      "target": "dmg"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #FFF44F;
+    --color-background: #000000;
+    --color-text: #FFFFFF;
+    --color-border: #FFF44F;
+  }
+  
+  body {
+    @apply bg-black text-white;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer utilities {
+  .glow-yellow {
+    box-shadow: 0 0 10px rgba(255, 244, 79, 0.5);
+  }
+  
+  .glow-yellow-strong {
+    box-shadow: 0 0 20px rgba(255, 244, 79, 0.8);
+  }
+}
